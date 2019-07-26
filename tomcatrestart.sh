@@ -13,7 +13,7 @@ hostip=`hostname -I`
 ps -ef | grep "org.apache.catalina.startup.Bootstrap" | grep -v grep  > xyz.txt
 tomcat_pid=`awk '{print $2}' xyz.txt`
 echo $tomcat_pid
-#echo $hima
+
 #Tomcat_pid=$(tomcat_pid)
 if [ -n "$tomcat_pid" ]
 then
