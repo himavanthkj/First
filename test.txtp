@@ -1,0 +1,4 @@
+In this article we will review sed, the well-known stream editor, and share 15 tips to use it in order to accomplish the goals mentioned earlier, and more.	
+default via 192.168.0.1 dev enp0s3 proto static metric 100
+169.254.0.0/16 dev enp0s3 scope link metric 1000
+192.168.0.0/24 dev enp0s3 proto kernel scope link src 192.168.0.5 metric 100
