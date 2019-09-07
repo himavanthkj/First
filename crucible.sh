@@ -10,21 +10,30 @@ hostip=`hostname -I`
 #else 
 #echo "service is not running"
 #fi
-ps -ef | grep "org.apache.catalina.startup.Bootstrap" | grep -v grep  > xyz.txt
-tomcat_pid=`awk '{print $2}' xyz.txt`
-echo $tomcat_pid
+
+ps -ef | grep "crucible" | grep -v grep  > xyz.txt
+crucible_pid=`awk '{print $2}' xyz.txt`
+echo $crucible_pid
 
 #Tomcat_pid=$(tomcat_pid)
-if [ -n "$tomcat_pid" ]
+if [ -n "$crucible_pid" ]
 then
-        echo -e "Tomcat is running (pid: $tomcat_pid)"
-	hostip=`hostname -I`
-	urlstatus=`curl -Is http://${hostip}:8080 | head -1 | awk '{print $2}'`
-	if [ $urlstatus = 200 ]
-	then
+        echo -e "Crucible is running (pid: $crucible_pid)"
+		hostip=`hostname -I`
+        	urlstatus=`curl -Is http://${hostip}:8080 | head -1 | awk '{print $2}'`
+
+		if [ $urlstatus = 200 ]
+		then
 		echo "Url as well loading fine with (status: $urlstatus)"
-	else
+		else
 		echo -e "URL is not loading, so will kill the (pid: $tomcat_pid) and start the tomcat"
+		cd /home/hima/
+		if ![[ lsof -- /home/hima/tmp.txt ]]
+		then
+			echo "Backing up, so exiting"
+			break
+		else
+		if ! sh /opt/tomcat/latest/bin/shutdown.sh
 		kill -9 $tomcat_pid
 		sh /opt/tomcat/latest/bin/startup.sh
 		wait $! #It will let wait the next command until previous one completes
