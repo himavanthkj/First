@@ -1,0 +1,1 @@
+-rwxr-x---+ 1 root systemd-journal 2.5M Aug  3 01:15 /run/log/journal/487416a7000b42eeaaa5b6cba6f720e1/system.journal
