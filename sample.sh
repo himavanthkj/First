@@ -1,5 +1,3 @@
-#!/bin/bash
-
 hostip=`hostname -i`
 tomcat_pid() {
   echo `ps aux | grep org.apache.catalina.startup.Bootstrap | grep -v grep | awk '{ print $2 }'`
