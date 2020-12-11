@@ -9,7 +9,7 @@ hostip=`hostname -I`
 #echo "service is up"
 #else 
 #echo "service is not running"
-#fii
+#fi
 
 ps -ef | grep "crucible" | grep -v grep  > xyz.txt
 crucible_pid=`awk '{print $2}' xyz.txt`
